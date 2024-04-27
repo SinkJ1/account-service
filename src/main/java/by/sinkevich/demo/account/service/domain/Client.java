@@ -8,14 +8,18 @@ import jakarta.persistence.*;
 public class Client {
 
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
-
-    @Column
+    @Column(name = "name", nullable = false)
     private String name;
-
-    @Column
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
+    private Account account;
+    @Column(name = "documentId", nullable = false)
     private String documentId;
-    @Column
+    @Column(name = "document_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private DocumentType documentType;
 
@@ -51,11 +55,20 @@ public class Client {
         this.documentType = documentType;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", account=" + account +
                 ", documentId='" + documentId + '\'' +
                 ", documentType=" + documentType +
                 '}';

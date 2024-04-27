@@ -2,16 +2,22 @@ package by.sinkevich.demo.account.service.domain;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Table
 @Entity(name = "account")
 public class Account {
 
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @ManyToOne(optional = false)
+    @OneToOne(mappedBy = "account", optional = false)
     private Client client;
-    private Double amount;
+    @Column(name = "amount", nullable = false)
+    private BigDecimal amount;
     @ManyToOne(optional = false)
     private Currency currency;
 
@@ -31,11 +37,11 @@ public class Account {
         this.client = client;
     }
 
-    public Double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
