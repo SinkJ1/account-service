@@ -15,10 +15,6 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="account_id" type="bigint">
-                <constraints nullable="false" unique="true"/>
-            </column>
-
             <column name="document_id" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
@@ -39,7 +35,6 @@
 
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
-            <column name="account_id" type="numeric"/>
             <column name="document_id" type="string"/>
             <column name="document_type" type="string"/>
         </loadData>

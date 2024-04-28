@@ -14,7 +14,7 @@ public class Account {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @OneToOne(mappedBy = "account", optional = false)
+    @ManyToOne(optional = false)
     private Client client;
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;

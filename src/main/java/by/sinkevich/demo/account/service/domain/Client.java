@@ -3,6 +3,8 @@ package by.sinkevich.demo.account.service.domain;
 import by.sinkevich.demo.account.service.domain.enumeration.DocumentType;
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "client")
 public class Client {
@@ -14,14 +16,13 @@ public class Client {
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
-    private Account account;
     @Column(name = "documentId", nullable = false)
     private String documentId;
     @Column(name = "document_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private DocumentType documentType;
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Account> accounts;
 
     public Long getId() {
         return id;
@@ -55,20 +56,18 @@ public class Client {
         this.documentType = documentType;
     }
 
-    public Account getAccount() {
-        return account;
+    public Set<Account> getAccounts() {
+        return accounts;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
     }
-
     @Override
     public String toString() {
         return "Client{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", account=" + account +
                 ", documentId='" + documentId + '\'' +
                 ", documentType=" + documentType +
                 '}';

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -33,18 +34,17 @@ public class ClientServiceImpl implements ClientService {
         Currency currency = new Currency();
         currency.setId(DEFAULT_CURRENCY_ID);
 
-        Account account = createAccount(currency);
-
-        client.setAccount(account);
+        client.setAccounts(Set.of(createAccount(client, currency)));
         client = clientRepository.save(client);
         return clientMapper.toDto(client);
     }
 
-    private Account createAccount(Currency currency) {
+    private Account createAccount(Client client, Currency currency) {
         Account account = new Account();
         account.setAmount(new BigDecimal("0.00"));
         account.setCurrency(currency);
-        return accountRepository.save(account);
+        account.setClient(client);
+        return account;
     }
 
 }
