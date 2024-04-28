@@ -29,6 +29,7 @@ public class OperationServiceImpl implements OperationService {
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public OperationDTO save(OperationDTO operationDTO) {
         Operation operation = operationMapper.toEntity(operationDTO);
+        accountService.changeAmount(operationDTO.getAccount(), operation.getAmount(), operation.getType());
         operation = operationRepository.save(operation);
         return operationMapper.toDto(operation);
     }
