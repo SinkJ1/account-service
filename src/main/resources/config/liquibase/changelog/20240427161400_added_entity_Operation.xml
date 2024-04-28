@@ -19,6 +19,9 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="amount" type="numeric(10,2)">
+                <constraints nullable="false"/>
+            </column>
 
         </createTable>
     </changeSet>
@@ -33,6 +36,7 @@
             <column name="id" type="numeric"/>
             <column name="type" type="string"/>
             <column name="account_id" type="numeric"/>
+            <column name="amount" type="numeric"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>

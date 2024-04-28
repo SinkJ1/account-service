@@ -1,10 +1,15 @@
 package by.sinkevich.demo.account.service.service.dto;
 
 import by.sinkevich.demo.account.service.domain.enumeration.OperationType;
+import jakarta.validation.constraints.Positive;
+
+import java.math.BigDecimal;
 
 public class OperationDTO {
     private Long id;
     private OperationType type;
+    @Positive
+    private BigDecimal amount;
     private AccountDTO account;
 
     public Long getId() {
@@ -31,11 +36,20 @@ public class OperationDTO {
         this.account = account;
     }
 
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
     @Override
     public String toString() {
         return "OperationDTO{" +
                 "id=" + id +
                 ", type=" + type +
+                ", amount=" + amount +
                 ", account=" + account +
                 '}';
     }

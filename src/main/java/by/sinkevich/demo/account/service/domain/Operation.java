@@ -3,6 +3,8 @@ package by.sinkevich.demo.account.service.domain;
 import by.sinkevich.demo.account.service.domain.enumeration.OperationType;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Table
 @Entity(name = "operation")
 public class Operation {
@@ -18,6 +20,8 @@ public class Operation {
 
     @ManyToOne(optional = false)
     private Account account;
+    @Column(name = "amount", nullable = false)
+    private BigDecimal amount;
 
     public Long getId() {
         return id;
@@ -43,12 +47,21 @@ public class Operation {
         this.account = account;
     }
 
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
     @Override
     public String toString() {
         return "Operation{" +
                 "id=" + id +
                 ", type=" + type +
                 ", account=" + account +
+                ", amount=" + amount +
                 '}';
     }
 }
