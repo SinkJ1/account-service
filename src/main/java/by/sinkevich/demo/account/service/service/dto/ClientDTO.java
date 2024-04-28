@@ -3,12 +3,15 @@ package by.sinkevich.demo.account.service.service.dto;
 import by.sinkevich.demo.account.service.domain.enumeration.DocumentType;
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 public class ClientDTO {
     private Long id;
     private String name;
     private AccountDTO account;
     private String documentId;
     private DocumentType documentType;
+    private Set<AccountDTO> accounts;
 
     public Long getId() {
         return id;
@@ -48,6 +51,14 @@ public class ClientDTO {
 
     public void setDocumentType(DocumentType documentType) {
         this.documentType = documentType;
+    }
+
+    public Set<AccountDTO> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<AccountDTO> accounts) {
+        this.accounts = accounts;
     }
 
     @Override

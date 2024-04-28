@@ -10,6 +10,5 @@
     <include file="config/liquibase/changelog/20240427160300_added_entity_Account.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240427161400_added_entity_Operation.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240427170100_added_entity_constraints_Account.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20240427170200_added_entity_constraints_Client.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240427170300_added_entity_constraints_Operation.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
