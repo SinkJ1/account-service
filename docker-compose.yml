@@ -1,0 +1,38 @@
+version: '3.1'
+services:
+  account-service_database:
+    image: 'postgres:latest'
+    container_name: 'account-service_database'
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=hard-password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=account-service
+      - PGDATA=/data
+    volumes:
+      - ../database-dev:/data
+    ports:
+      - '2540:5432'
+    networks:
+      - account-service_net
+
+  account-service_backend:
+    image: 'account-service_backend'
+    container_name: 'account-service_backend'
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '2541:8080'
+    environment:
+      - DB_URL=jdbc:postgresql://192.168.0.103:2540/account-service
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=hard-password
+    command: ["java", "-jar", "build/libs/account.service-0.0.1-SNAPSHOT.jar"]
+    networks:
+      - account-service_net
+
+networks:
+  account-service_net:
+    driver: bridge
