@@ -1,16 +1,18 @@
 package by.sinkevich.demo.account.service.service.dto;
 
 import by.sinkevich.demo.account.service.domain.enumeration.DocumentType;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.util.Set;
 
 public class ClientDTO {
+    @Schema(defaultValue = "null")
     private Long id;
     private String name;
-    private AccountDTO account;
     private String documentId;
     private DocumentType documentType;
+    @Schema(hidden = true)
     private Set<AccountDTO> accounts;
 
     public Long getId() {
@@ -28,15 +30,6 @@ public class ClientDTO {
     public void setName(String name) {
         this.name = name;
     }
-
-    public AccountDTO getAccount() {
-        return account;
-    }
-
-    public void setAccount(AccountDTO account) {
-        this.account = account;
-    }
-
     public String getDocumentId() {
         return documentId;
     }
@@ -66,7 +59,6 @@ public class ClientDTO {
         return "ClientDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", account=" + account +
                 ", documentId='" + documentId + '\'' +
                 ", documentType=" + documentType +
                 '}';

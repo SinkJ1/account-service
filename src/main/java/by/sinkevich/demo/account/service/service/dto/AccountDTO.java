@@ -1,8 +1,10 @@
 package by.sinkevich.demo.account.service.service.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.math.BigDecimal;
 public class AccountDTO {
-
+    @Schema(defaultValue = "null")
     private Long id;
     private ClientDTO client;
     private BigDecimal amount;

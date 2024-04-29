@@ -12,6 +12,15 @@ public interface AccountMapper {
     @Named("toAccountName")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(source = "id", target = "id")
+    @Mapping(source = "amount", target = "amount")
+    @Mapping(source = "currency", target = "currency")
     AccountDTO toAccountName(Account account);
+
+    @Named("toAccount")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "amount", target = "amount")
+    @Mapping(source = "currency", target = "currency")
+    Account toAccount(AccountDTO account);
 
 }

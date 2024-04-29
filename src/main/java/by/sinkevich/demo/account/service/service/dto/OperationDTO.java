@@ -1,14 +1,17 @@
 package by.sinkevich.demo.account.service.service.dto;
 
 import by.sinkevich.demo.account.service.domain.enumeration.OperationType;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
 
 public class OperationDTO {
+    @Schema(defaultValue = "null")
     private Long id;
     private OperationType type;
     @Positive
+    @Schema(defaultValue = "0.01")
     private BigDecimal amount;
     private AccountDTO account;
 
