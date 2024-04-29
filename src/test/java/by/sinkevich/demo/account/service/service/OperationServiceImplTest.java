@@ -1,11 +1,9 @@
-package by.sinkevich.demo.account.service.config;
+package by.sinkevich.demo.account.service.service;
 
 import by.sinkevich.demo.account.service.domain.Account;
 import by.sinkevich.demo.account.service.domain.enumeration.DocumentType;
 import by.sinkevich.demo.account.service.domain.enumeration.OperationType;
 import by.sinkevich.demo.account.service.repository.AccountRepository;
-import by.sinkevich.demo.account.service.service.ClientService;
-import by.sinkevich.demo.account.service.service.OperationService;
 import by.sinkevich.demo.account.service.service.dto.AccountDTO;
 import by.sinkevich.demo.account.service.service.dto.ClientDTO;
 import by.sinkevich.demo.account.service.service.dto.OperationDTO;
@@ -13,6 +11,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -31,6 +31,7 @@ import java.util.concurrent.Executors;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class OperationServiceImplTest {
+    private final Logger log = LoggerFactory.getLogger(OperationServiceImplTest.class);
 
     @Autowired
     private OperationService operationService;
@@ -95,7 +96,7 @@ class OperationServiceImplTest {
                     operationService.save(operationDTO);
                     latch.countDown();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error(e.getLocalizedMessage());
                 }
             });
         }
@@ -141,7 +142,7 @@ class OperationServiceImplTest {
                     operationService.save(operationDTO);
                     latch.countDown();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error(e.getLocalizedMessage());
                 }
             });
         }
@@ -225,7 +226,7 @@ class OperationServiceImplTest {
                     operationService.save(operationDTO);
                     latch.countDown();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error(e.getLocalizedMessage());
                 }
             });
         }
