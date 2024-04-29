@@ -17,8 +17,9 @@ git clone https://github.com/SinkJ1/account-service.git -b master
 This command will create two docker containers:
 1) Postgres:11
 2) Java:19
-   Postgres will create a folder outside of project folder.
-   You can open your browser and go by next link:
+   
+Postgres will create a folder outside of project folder.
+You can open your browser and go by next link:
 ```
 http://localhost:2541/swagger-ui/index.html
 ```
@@ -49,4 +50,10 @@ curl -X 'POST' \
   "id": 0,
   "type": "INCOME"
 }'
+```
+4. To run tests execute next command.
+
+Test result you can find in build/reports/tests/test/index.html
+```
+./gradlew test
 ```

@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  account-service_backend_tests:
+    image: 'account-service_backend_tests'
+    container_name: 'account-service_backend_tests'
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile_tests
+    ports:
+      - '2542:8080'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../test-result:/app/build/reports/tests
+    command: ["./gradlew", "test"]
