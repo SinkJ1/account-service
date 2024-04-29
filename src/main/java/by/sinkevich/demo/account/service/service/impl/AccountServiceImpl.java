@@ -6,7 +6,6 @@ import by.sinkevich.demo.account.service.service.AccountService;
 import by.sinkevich.demo.account.service.service.dto.AccountDTO;
 import jakarta.validation.constraints.Positive;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -20,9 +19,9 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional
     public void changeAmount(AccountDTO accountDTO, @Positive BigDecimal amount, OperationType type) {
-        accountRepository.findById(accountDTO.getId()).ifPresent(account -> {
+        accountRepository.findOneById(accountDTO.getId()).ifPresent(account -> {
             if (type.name().equals(OperationType.INCOME.name())) {
                 account.setAmount(account.getAmount().add(amount));
             } else {
