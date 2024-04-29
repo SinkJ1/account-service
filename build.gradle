@@ -23,6 +23,8 @@ dependencies {
 	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.5.Final"
 	implementation 'org.liquibase:liquibase-core'
 	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation 'org.testcontainers:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 }
