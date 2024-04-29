@@ -2,7 +2,7 @@
 1) Create an empty folder on your file system.
 2) Clone or download this git repo
 ```
-
+git clone https://github.com/SinkJ1/account-service.git -b master
 ```
 3) To run this application in docker do next instructions.
 * Go to project root directory
